@@ -12,13 +12,12 @@ app.use(express.json())
 // eslint-disable-next-line no-unused-vars
 let db
 const port = process.env.PORT || 443;
-dbConnect((error) => {
-    if(!error) {
-        app.listen(port, () => {
+app.listen(port, () => {
             console.log(`Now listening to port ${port}`)
         })
-        db = getDb()
-    }   
+
+app.get('/', (req,res) => {
+    res.status(200).json({result: "success"})
 })
 
 // Searching for email and password
