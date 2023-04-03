@@ -6,18 +6,19 @@ const {getDb, dbConnect} = require('./db')
 const app = express()
 
 
-app.use(cors({origin: 'https://omarabouzeid95.github.io/movie-app/'}))
+app.use(cors({origin: 'https://omarabouzeid95.github.io/'}))
 app.use(express.json())
 
-// eslint-disable-next-line no-unused-vars
-let db
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 6900;
 app.listen(port, () => {
-            console.log(`Now listening to port ${port}`)
-        })
+    console.log(`Now listening to port ${port}`)
+})
 
-app.get('/', (req,res) => {
-    res.status(200).json({result: "success"})
+let db
+dbConnect((error) => {
+    if(!error) {
+        db = getDb()
+    }   
 })
 
 // Searching for email and password
